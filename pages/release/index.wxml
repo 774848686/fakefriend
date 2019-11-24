@@ -1,0 +1,19 @@
+
+<view class='page'>
+  <textarea class='text' bindinput="input" placeholder="这一刻想法" auto-height/>
+  <view class="image_content">
+  <movable-area class="move-area" style="height:{{moveareaHeight}};width:{{moveareaWidth}}">
+    <view class='image item' wx:for="{{img_url}}" id="{{item.index}}" data-img='{{item}}' data-index='{{index}}' bindtouchstart='touchs' bindlongpress='_longtap' bindtouchend='touchend' bindtouchmove='touchm'  data-img='{{item}}' bindchange="touchm" >
+      <image class="moment_img" wx:if='{{item}}' bindtap="viewImgs" data-imgsource="{{img_url}}" data-photUrl='{{item}}' src="{{item}}"></image>
+      <image class="clear"   bindtap="deletePic" data-index='{{index}}' src="../../images/clear.png"></image>
+    </view>
+     <movable-view style="z-index:{{hidden?-1:9}};left:{{moveviewLeft}};top:{{moveviewTop}}" class='item-move' x="{{x}}" y="{{y}}" damping="{{5000}}" direction="all" friction='1'>
+      <image class='item-move' wx:if='{{viewImg}}' hidden="{{hidden}}" src="{{viewImg}}"></image>
+    </movable-view>
+  </movable-area>
+   <view class='image' style='display:{{hideAdd?"none":"inline-block"}}'>
+      <image bindtap="chooseimage" class="moment_img" src='../../images/add.png'></image>
+    </view>
+  </view>
+  <button bindtap="send" style='margin-right:5px;margin-left:5px'>发布</button>
+</view>
